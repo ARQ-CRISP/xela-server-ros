@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.3)
 project(xela_server)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+add_compile_options(-std=c++11)
 
 find_package(catkin REQUIRED COMPONENTS
   roscpp
@@ -10,6 +10,8 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   geometry_msgs
   message_generation
+  grid_map_ros
+  grid_map_msgs
 )
 
 ################################################
@@ -21,6 +23,7 @@ add_message_files(
   SensPoint.msg
   xSensorData.msg
   xServerMsg.msg
+  xServeFullSensorMsg.msg
 )
 
 add_service_files(
@@ -41,8 +44,9 @@ generate_messages(
 )
 catkin_package(
   CATKIN_DEPENDS 
-    rospy 
-    std_msgs 
+    rospy
+    roscpp 
+    std_msgs
     geometry_msgs
     message_runtime
 )
@@ -54,6 +58,34 @@ catkin_package(
 include_directories(
   ${catkin_INCLUDE_DIRS}
 )
+
+add_executable(
+  grid_map_ploter_xela
+  src/grid_map_ploter.cpp
+)
+
+target_link_libraries(
+  grid_map_ploter_xela
+  ${catkin_LIBRARIES}
+)
+
+## This makes sure message headers of this package are generated before being used. 
+add_dependencies(grid_map_ploter_xela xela_server_generate_messages_cpp)
+
+
+add_executable(
+  uskin_messages_converter
+  src/uskin_messages_converter.cpp
+)
+
+target_link_libraries(
+  uskin_messages_converter
+  ${catkin_LIBRARIES}
+)
+
+## This makes sure message headers of this package are generated before being used. 
+add_dependencies(uskin_messages_converter xela_server_generate_messages_cpp)
+
 
 #############
 ## Install ##

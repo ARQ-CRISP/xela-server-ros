@@ -1,0 +1,15 @@
+<launch>
+  <arg name="sensor_viz" default="1"/>
+
+  <!-- Launch the grid map simple demo node -->
+  <node pkg="xela_server" type="grid_map_ploter_xela" name="grid_map_ploter_node" output="screen">
+    <!-- read value of arg -->
+    <param name="sensor_viz" value="$(arg sensor_viz)"/> 
+  </node>
+  <!-- Launch the grid map visualizer -->
+  <node pkg="grid_map_visualization" type="grid_map_visualization" name="grid_map_visualization" output="screen">
+    <rosparam command="load" file="$(find xela_server)/config/visualization_config.yaml" />
+  </node>
+  <!-- Launch RViz with the demo configuration -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find xela_server)/rviz/config.rviz" />
+</launch>

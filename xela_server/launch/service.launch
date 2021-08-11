@@ -3,10 +3,20 @@
     <arg name="port" default="5000"/>
     <arg name="ip" default="127.0.0.1"/>
     <arg name="d" default="0"/>
+    <arg name="viz" default="1"/>
     <param name="param" value="$(arg file)"/>
     <param name="param" value="$(arg port)"/>
     <param name="param" value="$(arg ip)"/>
     <param name="param" value="$(arg d)"/>
     <node pkg="xela_server" type="xela_server" name="xela_server" required="true" args="-f $(arg file) --port $(arg port) --ip $(arg ip)" />
     <node pkg="xela_server" type="xela_service" name="xela_service" respawn="true" args="--port $(arg port) --ip $(arg ip) -d $(arg d)" />
+
+     <!-- include grid map visualizer launcher-->
+    <include file="$(find xela_server)/launch/grid_map_visualization.launch">
+        <arg name="sensor_viz" value="$(arg viz)"/>
+    </include>
+
+    <!-- Uskin messages converter -->
+    <!-- <node pkg="xela_server" type="uskin_messages_converter" name="uskin_messages_converter" output="screen" /> -->
+
 </launch>

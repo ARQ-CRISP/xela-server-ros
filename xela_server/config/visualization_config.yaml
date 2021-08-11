@@ -1,0 +1,10 @@
+grid_map_topic: /grid_map_ploter_node/grid_map
+grid_map_visualizations:
+  - name: surface_normals
+    type: vectors
+    params:
+      layer_prefix: normal_
+      position_layer: elevation
+      scale: 5
+      line_width: 5
+      color: 15600153 # red

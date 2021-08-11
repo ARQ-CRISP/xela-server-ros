@@ -374,7 +374,7 @@ SERVICE = rospy.Service('xServZ', XelaSensorZ, get_z)
 SERVICE = rospy.Service('xServXY', XelaSensorXY, get_xy)
 SERVICE = rospy.Service('xServXYZ', XelaSensorXYZ, get_xyz)
 SERVICE = rospy.Service('xServStream', XelaSensorStream, service_data_stream)
-STREAM  = rospy.Publisher('xServTopic', xServerMsg, queue_size=10)
+STREAM  = rospy.Publisher('xServTopic', xServerMsg, queue_size=1000)
 #pub.publish()
 _ = SERVICE
 
