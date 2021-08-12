@@ -23,7 +23,6 @@ add_message_files(
   SensPoint.msg
   xSensorData.msg
   xServerMsg.msg
-  xServeFullSensorMsg.msg
 )
 
 add_service_files(

@@ -99,16 +99,16 @@ void convert_message_callback(const xela_server::xServerMsg &msg)
 int main(int argc, char **argv)
 {
   // Initialize node and publisher.
-  ros::init(argc, argv, "uskin_messages_converter");
-  ros::NodeHandle nh("~");
+  // ros::init(argc, argv, "uskin_messages_converter");
+  // ros::NodeHandle nh("~");
 
-  publisher_pad1 = nh.advertise<xela_server::xServeFullSensorMsg>("/uskin1_xyz_values", 1000);
-  publisher_pad2 = nh.advertise<xela_server::xServeFullSensorMsg>("/uskin2_xyz_values", 1000);
+  // publisher_pad1 = nh.advertise<xela_server::xServeFullSensorMsg>("/uskin1_xyz_values", 1000);
+  // publisher_pad2 = nh.advertise<xela_server::xServeFullSensorMsg>("/uskin2_xyz_values", 1000);
   
-  ros::Subscriber sub = nh.subscribe("/xServTopic", 1000, convert_message_callback);
+  // ros::Subscriber sub = nh.subscribe("/xServTopic", 1000, convert_message_callback);
 
-  ros::spin();
-  // Wait for next cycle.
+  // ros::spin();
+  // // Wait for next cycle.
 
   return 0;
 }
