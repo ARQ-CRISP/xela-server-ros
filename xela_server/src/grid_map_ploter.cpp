@@ -126,7 +126,7 @@ void ploterCallback(const xela_server::xServerMsg &msg)
     normalized_flag = true;
     for (int i = 0; i < 24; i++)
     {
-        // cout <<"Got values for taxel " << i << " are x: "<<  msg.points[i].point.x << "  y: " <<  msg.points[i].point.y << "  z: " <<  msg.points[i].point.z << endl;
+        cout <<"Got values for taxel " << i << " are x: "<<  msg.points[i].point.x << "  y: " <<  msg.points[i].point.y << "  z: " <<  msg.points[i].point.z << endl;
         if (msg.points[i].point.x < uskin_pad_min_reads[i][0] && msg.points[i].point.x != 0)
           uskin_pad_min_reads[i][0] = msg.points[i].point.x;
         if (msg.points[i].point.y < uskin_pad_min_reads[i][1] && msg.points[i].point.y != 0)
@@ -137,7 +137,7 @@ void ploterCallback(const xela_server::xServerMsg &msg)
         if(uskin_pad_min_reads[i][0] == 65000 || uskin_pad_min_reads[i][1] == 65000 || uskin_pad_min_reads[i][2] == 65000)
           normalized_flag = false;
 
-        // cout <<"Min values for taxel " << i << " are x: "<< uskin_pad_min_reads[i][0] << "  y: " << uskin_pad_min_reads[i][1] << "  z: " << uskin_pad_min_reads[i][2] << endl;
+        cout <<"Min values for taxel " << i << " are x: "<< uskin_pad_min_reads[i][0] << "  y: " << uskin_pad_min_reads[i][1] << "  z: " << uskin_pad_min_reads[i][2] << endl;
 
     }
         cout << endl;
@@ -148,9 +148,13 @@ void ploterCallback(const xela_server::xServerMsg &msg)
   }
 
 
-  for (int i = 0; i < 24; i++)  
+  for (int i = 0; i < 24; i++)
+  {
+    if (i == 0)
+      cout <<"Got values for taxel " << i << " are x: "<<  msg.points[i].point.x << "  y: " <<  msg.points[i].point.y << "  z: " <<  msg.points[i].point.z << endl;
     normalize(msg.points[i].point.x, msg.points[i].point.y, msg.points[i].point.z, i, uskin_pad);
- 
+  }
+
 
 
 
@@ -169,7 +173,7 @@ void ploterCallback(const xela_server::xServerMsg &msg)
     map.at("normal_y", *it) = -1 * uskin_pad[(index(1)) + (index(0)) * 6][0] * 10 / vector_lenght;
     map.at("normal_z", *it) = uskin_pad[(index(1)) + (index(0)) * 6][2] * 10 / vector_lenght;
 
-    // ROS_INFO("Printing node %s at position x:%i, y:%i, with value %f", msg.points[(index(1)) * 4 + (index(0))].header.frame_id.c_str(), index(0), index(1), msg.points[(index(1)) * 4 + (index(0))].point.z);
+    // ROS_INFO("Printing node %i at position x:%i, y:%i, with value %f", ((index(1))+ (index(0)) * 6), index(0), index(1), uskin_pad[(index(1)) + (index(0)) * 6][2]);
   }
 
 // Publish grid map.

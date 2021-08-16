@@ -23,7 +23,6 @@ add_message_files(
   SensPoint.msg
   xSensorData.msg
   xServerMsg.msg
-  xServeFullSensorMsg.msg
 )
 
 add_service_files(
@@ -43,9 +42,9 @@ generate_messages(
 
 )
 catkin_package(
-  CATKIN_DEPENDS 
+  CATKIN_DEPENDS
     rospy
-    roscpp 
+    roscpp
     std_msgs
     geometry_msgs
     message_runtime
@@ -69,7 +68,7 @@ target_link_libraries(
   ${catkin_LIBRARIES}
 )
 
-## This makes sure message headers of this package are generated before being used. 
+## This makes sure message headers of this package are generated before being used.
 add_dependencies(grid_map_ploter_xela xela_server_generate_messages_cpp)
 
 
@@ -83,7 +82,7 @@ target_link_libraries(
   ${catkin_LIBRARIES}
 )
 
-## This makes sure message headers of this package are generated before being used. 
+## This makes sure message headers of this package are generated before being used.
 add_dependencies(uskin_messages_converter xela_server_generate_messages_cpp)
 
 

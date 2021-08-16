@@ -39,7 +39,7 @@ void convert_message_callback(const xela_server::xServerMsg &msg)
   //   uskin_pad1[msg.taxel-1][0] = msg.xyz.x;
   //   uskin_pad1[msg.taxel-1][1] = msg.xyz.y;
   //   uskin_pad1[msg.taxel-1][2] = msg.xyz.z;
-    
+
   //   min_reads_taxels_pad1 = msg.taxel;
 
   // }else if (msg.sensor == 2)
@@ -58,10 +58,10 @@ void convert_message_callback(const xela_server::xServerMsg &msg)
   //   for (int i = 0; i < 24; i++)
   //   {
   //     geometry_msgs::PointStamped uskin1_node_reading_msg, uskin2_node_reading_msg;
-  
+
   //     uskin1_node_reading_msg.header.frame_id = i+1;
   //     uskin2_node_reading_msg.header.frame_id = i+1;
-      
+
   //     uskin1_node_reading_msg.point.x = uskin_pad1[i][0];
   //     uskin1_node_reading_msg.point.y = uskin_pad1[i][1];
   //     uskin1_node_reading_msg.point.z = uskin_pad1[i][2];
@@ -93,8 +93,8 @@ void convert_message_callback(const xela_server::xServerMsg &msg)
 
   return;
 }
-  
-  
+
+
 
 int main(int argc, char **argv)
 {
@@ -102,10 +102,10 @@ int main(int argc, char **argv)
   ros::init(argc, argv, "uskin_messages_converter");
   ros::NodeHandle nh("~");
 
-  publisher_pad1 = nh.advertise<xela_server::xServeFullSensorMsg>("/uskin1_xyz_values", 1000);
-  publisher_pad2 = nh.advertise<xela_server::xServeFullSensorMsg>("/uskin2_xyz_values", 1000);
-  
-  ros::Subscriber sub = nh.subscribe("/xServTopic", 1000, convert_message_callback);
+  // publisher_pad1 = nh.advertise<xela_server::xServeFullSensorMsg>("/uskin1_xyz_values", 1000);
+  // publisher_pad2 = nh.advertise<xela_server::xServeFullSensorMsg>("/uskin2_xyz_values", 1000);
+
+  // ros::Subscriber sub = nh.subscribe("/xServTopic", 1000, convert_message_callback);
 
   ros::spin();
   // Wait for next cycle.
