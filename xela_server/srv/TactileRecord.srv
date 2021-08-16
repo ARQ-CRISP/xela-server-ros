@@ -1,0 +1,4 @@
+int32 input
+---
+int8 outcome
+string returned_object

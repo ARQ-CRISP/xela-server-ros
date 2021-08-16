@@ -27,6 +27,7 @@ add_message_files(
 
 add_service_files(
   FILES
+  TactileRecord.srv
   XelaSensorX.srv
   XelaSensorY.srv
   XelaSensorZ.srv
