@@ -4,10 +4,12 @@
     <arg name="ip" default="127.0.0.1"/>
     <arg name="d" default="0"/>
     <arg name="viz" default="1"/>
+    <arg name="object" default=""/>
     <param name="param" value="$(arg file)"/>
     <param name="param" value="$(arg port)"/>
     <param name="param" value="$(arg ip)"/>
     <param name="param" value="$(arg d)"/>
+    <param name="tactile_record_path" value="$(find xela_server)/files/rosbags/Grasp_$(arg object)" />
     <node pkg="xela_server" type="xela_server" name="xela_server" required="true" args="-f $(arg file) --port $(arg port) --ip $(arg ip)" />
     <node pkg="xela_server" type="xela_service" name="xela_service" respawn="true" args="--port $(arg port) --ip $(arg ip) -d $(arg d)" />
 
