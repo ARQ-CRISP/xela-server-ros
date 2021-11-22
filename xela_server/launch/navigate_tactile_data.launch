@@ -1,0 +1,17 @@
+<launch>
+
+  <param name="output_readings_file" value="$(find xela_server)/files/txt/trash"/>
+
+  <!-- include grid map visualizer launcher-->
+  <!-- <include file="$(find xela_server)/launch/grid_map_visualization.launch">
+    <arg name="replay_recording" value="true"/>
+    <arg name="min_readings_file" default="$(find xela_server)/files/txt/Grasp___back"/>
+  </include> -->
+
+  <!-- Launch Keyboard reader node for manual labelling. Rosbag recorder node-->
+
+  <node name="navigate_tactile_data" pkg="xela_server" type="navigate_tactile_data.py" output="screen" >
+    <param name="json_file_name" value="$(find xela_server)/config/config_navigate_tactile_data.json"/>
+  </node>
+
+</launch>

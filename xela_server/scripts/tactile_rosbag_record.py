@@ -23,15 +23,9 @@ def my_function(request):
     confirm_key = raw_input(
         "Do you wish to record a new experiment?\n")
 
-    if confirm_key != 'y':
-
-        response.outcome = 1
-        response.returned_object = ""
-        return response
-
-    else:
-        command = "rosbag record -o " + tactile_record_path + "_" + experiment_number + " " + "/xServTopic"
-        response.returned_object = tactile_record_path + "_" + experiment_number
+    if confirm_key == 'y':
+        command = "rosbag record -o " + tactile_record_path + "_" + str(experiment_number) + " " + "/xServTopic"
+        response.returned_object = tactile_record_path + "_" + str(experiment_number)
         command = shlex.split(command)
         rosbag_proc = subprocess.Popen(command)
 
@@ -46,6 +40,14 @@ def my_function(request):
 
         response.outcome = 0
 
+    elif confirm_key == 'e':
+        #Exit task
+        response.outcome = 2
+        response.returned_object = ""
+    else:
+        # Redo experiment
+        response.outcome = 1
+        response.returned_object = ""
 
     # Return the response
     return response
@@ -56,7 +58,7 @@ if __name__ == '__main__':
     rospy.init_node('tactile_rosbag_record_server')
 
     tactile_record_path = rospy.get_param("/tactile_record_path")
-        
+
     # Set the name of the service, specify which kind of srv will trigger it and what function will be run.
     # Change the name of the server with one that matches the content of your code, set the second argument to the name
     # of the srv file, and the last one should be the name of the function that runs your code.

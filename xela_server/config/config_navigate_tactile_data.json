@@ -1,0 +1,12 @@
+{
+    "experiment" : {
+        "object" : "metalBarBig",
+        "slip": "Slip_400gm",
+        "pose" : "top",
+        "experiment_num" : 14
+    },
+    "tactile_data_path" : "/home/user/projects/shadow_robot/base/src/xela-server-ros/xela_server/files/rosbags/metalBarBig/",
+    "h5py_file_path": "/home/user/projects/shadow_robot/base/src/xela-server-ros/xela_server/files/labels/",
+    "h5py_tactile_file_name": "slipDataset_${object}_tactile.h5"
+
+}
